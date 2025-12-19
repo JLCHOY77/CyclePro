@@ -5,7 +5,6 @@ import { Bike, Calendar, Wrench, CreditCard, Shield, Clock, ArrowRight, Sparkles
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { LogoIcon } from '@/components/LogoIcon'
-import Image from 'next/image'
 
 export default function HomePage() {
   const features = [
@@ -13,43 +12,37 @@ export default function HomePage() {
       icon: Calendar,
       title: 'Reserva en Línea',
       description: 'Agenda tus servicios de mantenimiento de forma rápida y sencilla desde tu celular.',
-      gradient: 'from-blue-500 to-blue-700',
-      image: '/feature-booking.jpg'
+      gradient: 'from-blue-500 to-blue-700'
     },
     {
       icon: Wrench,
       title: 'Servicios Profesionales',
       description: 'Mecánicos certificados y especializados en todo tipo de bicicletas.',
-      gradient: 'from-primary to-blue-800',
-      image: '/feature-mechanic.jpg'
+      gradient: 'from-primary to-blue-800'
     },
     {
       icon: CreditCard,
       title: 'Pago Fácil',
       description: 'Paga fácilmente con Yappy, tarjeta o efectivo. ¡Tú eliges!',
-      gradient: 'from-emerald-500 to-emerald-700',
-      image: '/feature-payment.jpg'
+      gradient: 'from-emerald-500 to-emerald-700'
     },
     {
       icon: Clock,
       title: 'Seguimiento en Tiempo Real',
       description: 'Recibe notificaciones sobre el estado de tu servicio en todo momento.',
-      gradient: 'from-amber-500 to-amber-700',
-      image: '/feature-tracking.jpg'
+      gradient: 'from-amber-500 to-amber-700'
     },
     {
       icon: Shield,
       title: 'Garantía de Calidad',
       description: 'Todos nuestros servicios incluyen garantía y repuestos originales.',
-      gradient: 'from-purple-500 to-purple-700',
-      image: '/feature-quality.jpg'
+      gradient: 'from-purple-500 to-purple-700'
     },
     {
       icon: Bike,
       title: 'Historial de Servicios',
       description: 'Mantén el registro completo del mantenimiento de todas tus bicicletas.',
-      gradient: 'from-rose-500 to-rose-700',
-      image: '/feature-history.jpg'
+      gradient: 'from-rose-500 to-rose-700'
     },
   ]
 
@@ -141,36 +134,18 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="group relative bg-white rounded-2xl border-2 border-slate-100 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 overflow-hidden"
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="group bg-white p-8 rounded-2xl border-2 border-slate-100 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300"
               >
-                {/* Imagen de fondo */}
-                <div className="relative h-48 w-full overflow-hidden">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${feature.gradient} opacity-60`} />
-                  
-                  {/* Icono superpuesto */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-white/90 backdrop-blur-sm w-16 h-16 rounded-xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
-                      <feature.icon className={`w-8 h-8 bg-gradient-to-br ${feature.gradient} bg-clip-text text-transparent`} style={{WebkitTextFillColor: 'transparent'}} />
-                    </div>
-                  </div>
+                <div className={`bg-gradient-to-br ${feature.gradient} w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <feature.icon className="w-8 h-8 text-white" />
                 </div>
-
-                {/* Contenido */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  {feature.description}
+                </p>
               </motion.div>
             ))}
           </div>
