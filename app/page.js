@@ -76,8 +76,9 @@ export default function HomePage() {
               <LogoIcon className="w-56 h-56" />
             </motion.div>
             
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl">
-              Bienvenido a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">CyclingPRO</span>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-2xl">
+              <span className="text-white">Bienvenido a </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">CyclingPRO</span>
             </h1>
             
             <div className="flex items-center justify-center gap-2 mb-8">
