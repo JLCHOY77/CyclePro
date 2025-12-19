@@ -60,8 +60,8 @@ code {
 @layer base {
   :root {
         /* Paleta Moderna y Elegante - CyclingPRO */
-        --background: 0 0% 100%;
-        --foreground: 222 47% 11%;
+        --background: 222 47% 11%;
+        --foreground: 0 0% 98%;
         
         /* Cards con sombra sutil */
         --card: 0 0% 100%;
