@@ -1,7 +1,13 @@
+require('dotenv').config()
 const { createClient } = require('@supabase/supabase-js')
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+
+console.log('🔧 Configuration:')
+console.log('   Supabase URL:', supabaseUrl ? '✅' : '❌')
+console.log('   Service Key:', supabaseServiceKey ? '✅' : '❌')
+console.log('')
 
 const supabase = createClient(supabaseUrl, supabaseServiceKey, {
   auth: {
