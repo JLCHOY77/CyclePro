@@ -11,7 +11,9 @@ datasource db {
 
 enum UserRole {
   CLIENT
+  CASHIER
   ADMIN
+  INVENTORY
 }
 
 enum BookingStatus {
@@ -115,6 +117,7 @@ model Transaction {
   status              TransactionStatus   @default(PENDING)
   pagueloFacilRef     String?             // Referencia de Paguelo Facil
   yappiPhone          String?             // Teléfono de Yappy si aplica
+  processedBy         String?             // ID del cajero que procesó
   transactionDate     DateTime            @default(now())
   createdAt           DateTime            @default(now())
   updatedAt           DateTime            @updatedAt
@@ -122,4 +125,40 @@ model Transaction {
   booking             Booking             @relation(fields: [bookingId], references: [id], onDelete: Cascade)
   
   @@map("transactions")
+}
+
+// Inventario de repuestos
+model InventoryItem {
+  id                  String              @id @default(uuid())
+  name                String
+  description         String?
+  category            String              // Cadenas, Llantas, Frenos, etc
+  sku                 String              @unique
+  quantity            Int                 @default(0)
+  minQuantity         Int                 @default(5)  // Alerta de stock bajo
+  price               Float
+  supplier            String?
+  lastRestocked       DateTime?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  
+  movements           InventoryMovement[]
+  
+  @@map("inventory_items")
+}
+
+// Movimientos de inventario
+model InventoryMovement {
+  id                  String              @id @default(uuid())
+  itemId              String
+  type                String              // ENTRADA, SALIDA, AJUSTE
+  quantity            Int
+  reason              String?             // Venta, Compra, Servicio, Ajuste
+  reference           String?             // ID de booking si aplica
+  userId              String              // Quien hizo el movimiento
+  createdAt           DateTime            @default(now())
+  
+  item                InventoryItem       @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  
+  @@map("inventory_movements")
 }
