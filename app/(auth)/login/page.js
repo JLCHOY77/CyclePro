@@ -11,6 +11,7 @@ import { Bike, Loader2, ArrowLeft, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { toast } from 'sonner'
+import { LogoIcon } from '@/components/LogoIcon'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
