@@ -1,7 +1,7 @@
 require('dotenv').config()
 const { Client } = require('pg')
 
-const connectionString = 'postgresql://postgres.lqsirpeqijpnrsmhypvd:Panama.2025.*@aws-l-us-east-2.pooler.supabase.com:5432/postgres'
+const connectionString = 'postgresql://postgres.lqsirpeqijpnrsmhypvd:Panama.2025.*@aws-1-us-east-2.pooler.supabase.com:5432/postgres'
 
 const sql = `
 -- Enable UUID extension
