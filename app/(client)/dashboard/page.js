@@ -16,6 +16,7 @@ import { toast } from 'sonner'
 import { createBooking } from '@/app/actions/booking-actions'
 import { createBicycle } from '@/app/actions/bicycle-actions'
 import Link from 'next/link'
+import { LogoIcon } from '@/components/LogoIcon'
 
 export default function DashboardPage() {
   const [user, setUser] = useState(null)
@@ -146,11 +147,8 @@ export default function DashboardPage() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="bg-gradient-to-br from-primary to-blue-700 text-white p-2.5 rounded-xl shadow-lg shadow-primary/30">
-                <Bike className="w-6 h-6" />
-              </div>
+              <LogoIcon className="w-12 h-12" />
               <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">CyclingPRO</h1>
                 <p className="text-sm text-slate-600">{user?.email}</p>
               </div>
             </div>
