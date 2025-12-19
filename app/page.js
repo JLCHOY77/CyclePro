@@ -4,38 +4,45 @@ import { Button } from '@/components/ui/button'
 import { Bike, Calendar, Wrench, CreditCard, Shield, Clock, ArrowRight, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { LogoIcon } from '@/components/LogoIcon'
 
 export default function HomePage() {
   const features = [
     {
       icon: Calendar,
       title: 'Reserva en Línea',
-      description: 'Agenda tus servicios de mantenimiento de forma rápida y sencilla desde tu celular.'
+      description: 'Agenda tus servicios de mantenimiento de forma rápida y sencilla desde tu celular.',
+      gradient: 'from-blue-500 to-blue-700'
     },
     {
       icon: Wrench,
       title: 'Servicios Profesionales',
-      description: 'Mecánicos certificados y especializados en todo tipo de bicicletas.'
+      description: 'Mecánicos certificados y especializados en todo tipo de bicicletas.',
+      gradient: 'from-primary to-blue-800'
     },
     {
       icon: CreditCard,
       title: 'Pago con Yappy',
-      description: 'Paga fácilmente con Yappy, tarjeta o efectivo. ¡Tú eliges!'
+      description: 'Paga fácilmente con Yappy, tarjeta o efectivo. ¡Tú eliges!',
+      gradient: 'from-emerald-500 to-emerald-700'
     },
     {
       icon: Clock,
       title: 'Seguimiento en Tiempo Real',
-      description: 'Recibe notificaciones sobre el estado de tu servicio en todo momento.'
+      description: 'Recibe notificaciones sobre el estado de tu servicio en todo momento.',
+      gradient: 'from-amber-500 to-amber-700'
     },
     {
       icon: Shield,
       title: 'Garantía de Calidad',
-      description: 'Todos nuestros servicios incluyen garantía y repuestos originales.'
+      description: 'Todos nuestros servicios incluyen garantía y repuestos originales.',
+      gradient: 'from-purple-500 to-purple-700'
     },
     {
       icon: Bike,
       title: 'Historial de Servicios',
-      description: 'Mantén el registro completo del mantenimiento de todas tus bicicletas.'
+      description: 'Mantén el registro completo del mantenimiento de todas tus bicicletas.',
+      gradient: 'from-rose-500 to-rose-700'
     },
   ]
 
@@ -55,9 +62,9 @@ export default function HomePage() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center justify-center p-3 bg-gradient-to-br from-primary to-primary/80 rounded-full mb-8 shadow-2xl shadow-primary/20"
+              className="flex justify-center mb-8"
             >
-              <Bike className="w-16 h-16 text-white" />
+              <LogoIcon className="w-48 h-48" />
             </motion.div>
             
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary via-blue-600 to-secondary bg-clip-text text-transparent mb-6">
@@ -127,8 +134,8 @@ export default function HomePage() {
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 className="group bg-white p-8 rounded-2xl border-2 border-slate-100 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300"
               >
-                <div className="bg-gradient-to-br from-primary to-blue-700 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-primary/30">
-                  <feature.icon className="w-7 h-7 text-white" />
+                <div className={`bg-gradient-to-br ${feature.gradient} w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <feature.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-3">
                   {feature.title}
@@ -172,10 +179,7 @@ export default function HomePage() {
       <footer className="bg-slate-900 text-white py-12">
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center mb-6">
-            <div className="bg-gradient-to-br from-primary to-secondary p-3 rounded-xl mr-3">
-              <Bike className="w-8 h-8" />
-            </div>
-            <span className="text-2xl font-bold">CyclingPRO</span>
+            <LogoIcon className="w-16 h-16" />
           </div>
           <p className="text-slate-400 text-lg">
             © 2025 CyclingPRO Panama. Todos los derechos reservados.
