@@ -54,11 +54,11 @@ export default function HomePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      {/* Hero Section con fondo oscuro para logo */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+    <div className="min-h-screen">
+      {/* Hero Section con fondo oscuro profesional para logo */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-emerald-900/20" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
         
         <div className="container relative mx-auto px-4 py-20 md:py-32">
           <motion.div
@@ -77,31 +77,31 @@ export default function HomePage() {
             </motion.div>
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-2xl">
-              <span className="text-white">Bienvenido a </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">CyclingPRO</span>
+              <span className="text-white drop-shadow-lg">Bienvenido a </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500">CyclingPRO</span>
             </h1>
             
             <div className="flex items-center justify-center gap-2 mb-8">
-              <Sparkles className="w-5 h-5 text-emerald-400" />
-              <p className="text-xl md:text-2xl text-slate-300 font-medium">
+              <Sparkles className="w-5 h-5 text-yellow-400" />
+              <p className="text-xl md:text-2xl text-white font-medium drop-shadow-lg">
                 La plataforma líder de gestión de servicios de ciclismo en Panamá
               </p>
-              <Sparkles className="w-5 h-5 text-emerald-400" />
+              <Sparkles className="w-5 h-5 text-yellow-400" />
             </div>
             
-            <p className="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-200 mb-10 max-w-2xl mx-auto drop-shadow-md">
               Agenda, gestiona y paga tus servicios de mantenimiento desde tu celular. Fácil, rápido y seguro.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/register">
-                <Button size="lg" className="w-full sm:w-auto text-lg px-8 h-14 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 shadow-2xl shadow-blue-500/50 transition-all duration-300 border-0">
+                <Button size="lg" className="w-full sm:w-auto text-lg px-8 h-14 bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-400 hover:via-amber-400 hover:to-yellow-500 text-slate-900 font-bold shadow-2xl shadow-yellow-500/50 transition-all duration-300 border-0">
                   Comenzar Ahora
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
               <Link href="/login">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-8 h-14 border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-sm">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-8 h-14 border-2 border-yellow-400/50 text-white hover:bg-yellow-400/10 hover:border-yellow-400 transition-all duration-300 backdrop-blur-sm">
                   Iniciar Sesión
                 </Button>
               </Link>
@@ -110,8 +110,8 @@ export default function HomePage() {
         </div>
         
         {/* Decorative elements */}
-        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
       </section>
 
       {/* Features Section con fondo claro */}
