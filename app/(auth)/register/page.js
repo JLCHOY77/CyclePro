@@ -11,6 +11,7 @@ import { Bike, Loader2, ArrowLeft, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { toast } from 'sonner'
+import { LogoIcon } from '@/components/LogoIcon'
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('')
@@ -75,15 +76,13 @@ export default function RegisterPage() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6 }}
-              className="bg-gradient-to-br from-primary to-blue-700 text-white p-4 rounded-2xl shadow-2xl shadow-primary/30"
             >
-              <Bike className="w-12 h-12" />
+              <LogoIcon className="w-32 h-32" />
             </motion.div>
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">CyclingPRO</h1>
-          <div className="flex items-center justify-center gap-2 mt-2">
+          <div className="flex items-center justify-center gap-2 mt-4">
             <Sparkles className="w-4 h-4 text-secondary" />
-            <p className="text-slate-600">Gestión de Servicios de Ciclismo</p>
+            <p className="text-slate-600 text-lg">Gestión de Servicios de Ciclismo</p>
             <Sparkles className="w-4 h-4 text-secondary" />
           </div>
         </div>
