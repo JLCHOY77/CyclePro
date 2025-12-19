@@ -95,7 +95,7 @@ export default function HomePage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/register">
-                <Button size="lg" className="w-full sm:w-auto text-lg px-8 h-14 bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-400 hover:via-amber-400 hover:to-yellow-500 text-slate-900 font-bold shadow-2xl shadow-yellow-500/50 transition-all duration-300 border-0">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-8 h-14 border-2 border-yellow-400/50 text-white hover:bg-yellow-400/10 hover:border-yellow-400 transition-all duration-300 backdrop-blur-sm">
                   Comenzar Ahora
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
