@@ -10,12 +10,11 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
-import { Bike, Calendar, Plus, LogOut, Wrench, Clock, CheckCircle, Loader2, Home, Sparkles } from 'lucide-react'
+import { Bike, Calendar, Plus, LogOut, Wrench, Clock, CheckCircle, Loader2 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { toast } from 'sonner'
 import { createBooking } from '@/app/actions/booking-actions'
 import { createBicycle } from '@/app/actions/bicycle-actions'
-import Link from 'next/link'
 
 export default function DashboardPage() {
   const [user, setUser] = useState(null)
@@ -113,11 +112,11 @@ export default function DashboardPage() {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'PENDING': return 'bg-amber-100 text-amber-800 border-amber-200'
-      case 'IN_WORKSHOP': return 'bg-blue-100 text-blue-800 border-blue-200'
-      case 'COMPLETED': return 'bg-emerald-100 text-emerald-800 border-emerald-200'
-      case 'CANCELLED': return 'bg-red-100 text-red-800 border-red-200'
-      default: return 'bg-slate-100 text-slate-800 border-slate-200'
+      case 'PENDING': return 'bg-yellow-100 text-yellow-800'
+      case 'IN_WORKSHOP': return 'bg-blue-100 text-blue-800'
+      case 'COMPLETED': return 'bg-green-100 text-green-800'
+      case 'CANCELLED': return 'bg-red-100 text-red-800'
+      default: return 'bg-gray-100 text-gray-800'
     }
   }
 
@@ -133,39 +132,31 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-emerald-50">
+      <div className="min-h-screen flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-emerald-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="bg-gradient-to-br from-primary to-blue-700 text-white p-2.5 rounded-xl shadow-lg shadow-primary/30">
+              <div className="bg-primary text-primary-foreground p-2 rounded-lg">
                 <Bike className="w-6 h-6" />
               </div>
               <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">CyclingPRO</h1>
-                <p className="text-sm text-slate-600">{user?.email}</p>
+                <h1 className="text-xl font-bold text-gray-900">CyclingPRO</h1>
+                <p className="text-sm text-gray-500">{user?.email}</p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <Link href="/">
-                <Button variant="ghost" size="sm" className="gap-2">
-                  <Home className="w-4 h-4" />
-                  Inicio
-                </Button>
-              </Link>
-              <Button variant="outline" size="sm" onClick={handleLogout} className="gap-2 border-2">
-                <LogOut className="w-4 h-4" />
-                Salir
-              </Button>
-            </div>
+            <Button variant="outline" size="sm" onClick={handleLogout}>
+              <LogOut className="w-4 h-4 mr-2" />
+              Salir
+            </Button>
           </div>
         </div>
       </header>
@@ -174,29 +165,25 @@ export default function DashboardPage() {
         {/* Stats Cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-            <Card className="border-2 hover:shadow-xl transition-shadow duration-300 bg-white/80 backdrop-blur-sm">
+            <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-slate-600">Mis Bicicletas</CardTitle>
-                <div className="bg-primary/10 p-2 rounded-lg">
-                  <Bike className="w-5 h-5 text-primary" />
-                </div>
+                <CardTitle className="text-sm font-medium text-gray-600">Mis Bicicletas</CardTitle>
+                <Bike className="w-4 h-4 text-primary" />
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-primary">{bicycles.length}</div>
+                <div className="text-2xl font-bold">{bicycles.length}</div>
               </CardContent>
             </Card>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-            <Card className="border-2 hover:shadow-xl transition-shadow duration-300 bg-white/80 backdrop-blur-sm">
+            <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-slate-600">Citas Activas</CardTitle>
-                <div className="bg-blue-100 p-2 rounded-lg">
-                  <Calendar className="w-5 h-5 text-blue-600" />
-                </div>
+                <CardTitle className="text-sm font-medium text-gray-600">Citas Activas</CardTitle>
+                <Calendar className="w-4 h-4 text-blue-600" />
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-blue-600">
+                <div className="text-2xl font-bold">
                   {bookings.filter(b => b.status === 'PENDING' || b.status === 'IN_WORKSHOP').length}
                 </div>
               </CardContent>
@@ -204,15 +191,13 @@ export default function DashboardPage() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-            <Card className="border-2 hover:shadow-xl transition-shadow duration-300 bg-white/80 backdrop-blur-sm">
+            <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-slate-600">Servicios Completados</CardTitle>
-                <div className="bg-emerald-100 p-2 rounded-lg">
-                  <CheckCircle className="w-5 h-5 text-emerald-600" />
-                </div>
+                <CardTitle className="text-sm font-medium text-gray-600">Servicios Completados</CardTitle>
+                <CheckCircle className="w-4 h-4 text-green-600" />
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-emerald-600">
+                <div className="text-2xl font-bold">
                   {bookings.filter(b => b.status === 'COMPLETED').length}
                 </div>
               </CardContent>
@@ -222,52 +207,47 @@ export default function DashboardPage() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {/* Mis Bicicletas */}
-          <Card className="border-2 shadow-xl bg-white/80 backdrop-blur-sm">
+          <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-xl flex items-center gap-2">
-                    <Bike className="w-5 h-5 text-primary" />
-                    Mis Bicicletas
-                  </CardTitle>
+                  <CardTitle>Mis Bicicletas</CardTitle>
                   <CardDescription>Gestiona tus bicicletas registradas</CardDescription>
                 </div>
                 <Dialog open={bikeDialogOpen} onOpenChange={setBikeDialogOpen}>
                   <DialogTrigger asChild>
-                    <Button size="sm" className="gap-2 bg-gradient-to-r from-primary to-blue-700 hover:from-primary/90 hover:to-blue-600 shadow-lg shadow-primary/20">
-                      <Plus className="w-4 h-4" />
+                    <Button size="sm">
+                      <Plus className="w-4 h-4 mr-2" />
                       Agregar
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="border-2">
+                  <DialogContent>
                     <DialogHeader>
                       <DialogTitle>Registrar Bicicleta</DialogTitle>
                       <DialogDescription>Agrega una nueva bicicleta a tu cuenta</DialogDescription>
                     </DialogHeader>
                     <form onSubmit={handleCreateBike} className="space-y-4">
                       <div className="space-y-2">
-                        <Label htmlFor="brand">Marca *</Label>
-                        <Input id="brand" name="brand" placeholder="Trek, Giant, Specialized..." required className="border-2" />
+                        <Label htmlFor="brand">Marca</Label>
+                        <Input id="brand" name="brand" placeholder="Trek, Giant, etc." required />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="model">Modelo *</Label>
-                        <Input id="model" name="model" placeholder="Mountain X, Road Pro..." required className="border-2" />
+                        <Label htmlFor="model">Modelo</Label>
+                        <Input id="model" name="model" placeholder="Mountain X, Road Pro" required />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="serialNumber">Número de Serie (Opcional)</Label>
-                        <Input id="serialNumber" name="serialNumber" placeholder="ABC123456" className="border-2" />
+                        <Input id="serialNumber" name="serialNumber" placeholder="ABC123456" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="color">Color</Label>
-                        <Input id="color" name="color" placeholder="Rojo, Azul, Negro..." className="border-2" />
+                        <Input id="color" name="color" placeholder="Rojo, Azul, Negro" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="notes">Notas</Label>
-                        <Textarea id="notes" name="notes" placeholder="Cualquier detalle adicional..." className="border-2" />
+                        <Textarea id="notes" name="notes" placeholder="Cualquier detalle adicional..." />
                       </div>
-                      <Button type="submit" className="w-full bg-gradient-to-r from-primary to-blue-700 hover:from-primary/90 hover:to-blue-600">
-                        Guardar Bicicleta
-                      </Button>
+                      <Button type="submit" className="w-full">Guardar Bicicleta</Button>
                     </form>
                   </DialogContent>
                 </Dialog>
@@ -275,39 +255,22 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               {bicycles.length === 0 ? (
-                <div className="text-center py-12">
-                  <div className="bg-slate-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Bike className="w-10 h-10 text-slate-400" />
-                  </div>
-                  <p className="text-slate-500 font-medium">No tienes bicicletas registradas</p>
-                  <p className="text-sm text-slate-400 mt-1">Agrega tu primera bicicleta</p>
+                <div className="text-center py-8 text-gray-500">
+                  <Bike className="w-12 h-12 mx-auto mb-2 opacity-30" />
+                  <p>No tienes bicicletas registradas</p>
                 </div>
               ) : (
                 <div className="space-y-3">
                   {bicycles.map((bike) => (
-                    <motion.div
-                      key={bike.id}
-                      whileHover={{ scale: 1.02 }}
-                      className="p-4 bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl border-2 border-slate-100 hover:border-primary/30 transition-all duration-200 shadow-sm"
-                    >
+                    <div key={bike.id} className="p-4 bg-gray-50 rounded-lg border border-gray-200">
                       <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <Bike className="w-4 h-4 text-primary" />
-                            <h4 className="font-bold text-slate-900">{bike.brand} {bike.model}</h4>
-                          </div>
-                          {bike.color && (
-                            <p className="text-sm text-slate-600 flex items-center gap-1">
-                              <span className="w-3 h-3 rounded-full bg-gradient-to-r from-primary to-secondary"></span>
-                              Color: {bike.color}
-                            </p>
-                          )}
-                          {bike.serialNumber && (
-                            <p className="text-xs text-slate-500 mt-1">S/N: {bike.serialNumber}</p>
-                          )}
+                        <div>
+                          <h4 className="font-semibold text-gray-900">{bike.brand} {bike.model}</h4>
+                          {bike.color && <p className="text-sm text-gray-600">Color: {bike.color}</p>}
+                          {bike.serialNumber && <p className="text-xs text-gray-500 mt-1">S/N: {bike.serialNumber}</p>}
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               )}
@@ -315,42 +278,35 @@ export default function DashboardPage() {
           </Card>
 
           {/* Nueva Cita */}
-          <Card className="border-2 shadow-xl bg-white/80 backdrop-blur-sm">
+          <Card>
             <CardHeader>
-              <CardTitle className="text-xl flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-primary" />
-                Agendar Servicio
-              </CardTitle>
+              <CardTitle>Agendar Servicio</CardTitle>
               <CardDescription>Crea una nueva cita de mantenimiento</CardDescription>
             </CardHeader>
             <CardContent>
               {bicycles.length === 0 ? (
-                <div className="text-center py-12">
-                  <div className="bg-amber-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Bike className="w-10 h-10 text-amber-600" />
-                  </div>
-                  <p className="text-slate-500 font-medium">Primero debes registrar una bicicleta</p>
-                  <p className="text-sm text-slate-400 mt-1">Usa el formulario de la izquierda</p>
+                <div className="text-center py-8 text-gray-500">
+                  <Bike className="w-12 h-12 mx-auto mb-2 opacity-30" />
+                  <p>Primero debes registrar una bicicleta</p>
                 </div>
               ) : (
                 <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                   <DialogTrigger asChild>
-                    <Button className="w-full h-16 text-lg bg-gradient-to-r from-secondary to-emerald-600 hover:from-secondary/90 hover:to-emerald-500 shadow-xl shadow-secondary/30 transition-all duration-300">
-                      <Calendar className="w-5 h-5 mr-2" />
+                    <Button className="w-full" size="lg">
+                      <Calendar className="w-4 h-4 mr-2" />
                       Nueva Cita
-                      <Sparkles className="w-4 h-4 ml-2" />
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="border-2">
+                  <DialogContent>
                     <DialogHeader>
                       <DialogTitle>Agendar Servicio</DialogTitle>
                       <DialogDescription>Selecciona los detalles de tu cita</DialogDescription>
                     </DialogHeader>
                     <form onSubmit={handleCreateBooking} className="space-y-4">
                       <div className="space-y-2">
-                        <Label htmlFor="bicycleId">Bicicleta *</Label>
+                        <Label htmlFor="bicycleId">Bicicleta</Label>
                         <Select name="bicycleId" required>
-                          <SelectTrigger className="border-2">
+                          <SelectTrigger>
                             <SelectValue placeholder="Selecciona una bicicleta" />
                           </SelectTrigger>
                           <SelectContent>
@@ -363,9 +319,9 @@ export default function DashboardPage() {
                         </Select>
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="serviceId">Servicio *</Label>
+                        <Label htmlFor="serviceId">Servicio</Label>
                         <Select name="serviceId" required>
-                          <SelectTrigger className="border-2">
+                          <SelectTrigger>
                             <SelectValue placeholder="Selecciona un servicio" />
                           </SelectTrigger>
                           <SelectContent>
@@ -378,23 +334,20 @@ export default function DashboardPage() {
                         </Select>
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="date">Fecha y Hora *</Label>
+                        <Label htmlFor="date">Fecha y Hora</Label>
                         <Input 
                           id="date" 
                           name="date" 
                           type="datetime-local" 
                           required 
                           min={new Date().toISOString().slice(0, 16)}
-                          className="border-2"
                         />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="notes">Notas (Opcional)</Label>
-                        <Textarea id="notes" name="notes" placeholder="Describe el problema o solicitud..." className="border-2" />
+                        <Textarea id="notes" name="notes" placeholder="Describe el problema o solicitud..." />
                       </div>
-                      <Button type="submit" className="w-full bg-gradient-to-r from-primary to-blue-700 hover:from-primary/90 hover:to-blue-600">
-                        Crear Cita
-                      </Button>
+                      <Button type="submit" className="w-full">Crear Cita</Button>
                     </form>
                   </DialogContent>
                 </Dialog>
@@ -404,59 +357,43 @@ export default function DashboardPage() {
         </div>
 
         {/* Mis Citas */}
-        <Card className="mt-6 border-2 shadow-xl bg-white/80 backdrop-blur-sm">
+        <Card className="mt-6">
           <CardHeader>
-            <CardTitle className="text-xl flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-primary" />
-              Mis Citas
-            </CardTitle>
+            <CardTitle>Mis Citas</CardTitle>
             <CardDescription>Historial de servicios y citas</CardDescription>
           </CardHeader>
           <CardContent>
             {bookings.length === 0 ? (
-              <div className="text-center py-12">
-                <div className="bg-slate-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Calendar className="w-10 h-10 text-slate-400" />
-                </div>
-                <p className="text-slate-500 font-medium">No tienes citas registradas</p>
-                <p className="text-sm text-slate-400 mt-1">Agenda tu primer servicio</p>
+              <div className="text-center py-8 text-gray-500">
+                <Calendar className="w-12 h-12 mx-auto mb-2 opacity-30" />
+                <p>No tienes citas registradas</p>
               </div>
             ) : (
               <div className="space-y-3">
                 {bookings.map((booking) => (
-                  <motion.div
-                    key={booking.id}
-                    whileHover={{ scale: 1.01 }}
-                    className="p-5 bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl border-2 border-slate-100 hover:border-primary/30 transition-all duration-200 shadow-sm"
-                  >
+                  <div key={booking.id} className="p-4 bg-gray-50 rounded-lg border border-gray-200">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
-                          <div className="bg-primary/10 p-1.5 rounded-lg">
-                            <Wrench className="w-4 h-4 text-primary" />
-                          </div>
-                          <h4 className="font-bold text-slate-900">{booking.service?.name}</h4>
+                          <Wrench className="w-4 h-4 text-primary" />
+                          <h4 className="font-semibold text-gray-900">{booking.service?.name}</h4>
                         </div>
-                        <p className="text-sm text-slate-600 mb-1 flex items-center gap-2">
-                          <Bike className="w-3.5 h-3.5" />
+                        <p className="text-sm text-gray-600 mb-1">
                           {booking.bicycle?.brand} {booking.bicycle?.model}
                         </p>
-                        <div className="flex items-center gap-2 text-sm text-slate-500">
-                          <Clock className="w-3.5 h-3.5" />
-                          {new Date(booking.date).toLocaleString('es-PA', {
-                            dateStyle: 'medium',
-                            timeStyle: 'short'
-                          })}
+                        <div className="flex items-center gap-2 text-sm text-gray-500">
+                          <Clock className="w-3 h-3" />
+                          {new Date(booking.date).toLocaleString('es-PA')}
                         </div>
                       </div>
-                      <span className={`px-4 py-1.5 rounded-full text-xs font-semibold border ${getStatusColor(booking.status)}`}>
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status)}`}>
                         {getStatusText(booking.status)}
                       </span>
                     </div>
                     {booking.notes && (
-                      <p className="text-sm text-slate-600 mt-3 pl-6 italic">{booking.notes}</p>
+                      <p className="text-sm text-gray-600 mt-2 pl-6">{booking.notes}</p>
                     )}
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             )}
